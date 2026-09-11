@@ -1,2 +1,2 @@
-# invitacion-cumple.github.io
+# invitacion-cumple
 index.html
