@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Yess Birthday</title>
+<meta name="theme-color" content="#d9bbda" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Euphoria+Script&family=Josefin+Sans:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#d9bbda;
+  --lavender:#b89ec1;
+  --text:#7a6482;
+  --white:#fff;
+  --shadow:0 12px 30px rgba(85,60,95,.18);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:#f5f1f6}
+body{margin:0;font-family:'Josefin Sans',sans-serif;color:var(--text);background:#f5f1f6;overflow-x:hidden}
+button,a{font:inherit}
+img{display:block;max-width:100%}
+
+/* contenedor principal; mantiene el diseño original de 400 px pero se adapta a móvil */
+.shell{width:min(100%,400px);margin:0 auto;background:var(--bg);overflow:hidden;box-shadow:0 0 45px rgba(50,30,55,.15)}
+.section{position:relative;background:var(--bg);overflow:hidden}
+.section.one{height:605px}
+.section.two{height:900px}
+.section.three{height:624px}
+
+.script-title{font-family:'Euphoria Script',cursive;font-weight:700;color:var(--lavender);line-height:1.05;text-align:center;-webkit-text-stroke:2px white;text-shadow:0 0 1px white,0 2px 0 white}
+.outline-soft{text-shadow:0 0 2px #fff,1px 1px 0 #fff,-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff}
+
+/* elementos decorativos */
+.figure{position:absolute;pointer-events:none;user-select:none;object-fit:contain}
+.f-main{left:6%;top:-6%;width:88%;height:110%;object-fit:contain;opacity:.98}
+.f-top-right{right:-17%;top:-13%;width:74%;transform:rotate(17deg)}
+.f-leaf-left{left:-3%;top:-3%;width:31%}
+.f-small-a{left:1%;bottom:2%;width:31%;transform:rotate(-8deg)}
+.f-small-b{left:20%;bottom:25%;width:38%;transform:rotate(-18deg)}
+.f-small-c{right:-3%;top:38%;width:42%}
+.f-small-d{left:10%;bottom:-1%;width:54%}
+
+/* Sección 1 */
+.hero-name{position:absolute;left:13%;top:17%;width:50%;font-size:60px;z-index:10}
+.hero-bday{position:absolute;left:29%;top:30%;width:50%;font-size:60px;z-index:10}
+.hero-date{position:absolute;left:18%;top:48%;width:70%;font-size:18px;font-weight:700;line-height:1.4;white-space:pre-line;z-index:12}
+.hero-photo{position:absolute;left:52.6%;top:51.2%;width:35.8%;height:41.8%;object-fit:cover;clip-path:polygon(22% 0,100% 0,78% 100%,0 100%);box-shadow:var(--shadow);z-index:8}
+
+/* Sección 2 */
+.s2-goodbye{position:absolute;left:-2%;top:6.6%;width:65%;font-size:40px;z-index:10}
+.s2-welcome{position:absolute;left:28%;top:13.4%;width:65%;font-size:45px;z-index:10}
+.polaroid{position:absolute;width:47.7%;height:29.6%;background:#fff;padding:8px 8px 28px;box-shadow:var(--shadow);z-index:5}
+.polaroid img{width:100%;height:100%;object-fit:cover}
+.p1{left:8%;top:25%;transform:rotate(-13.4deg)}
+.p2{left:23%;top:61%;transform:rotate(10deg)}
+.p3{left:52%;top:34%;transform:rotate(8deg)}
+
+/* Sección 3 */
+.s3-title{position:absolute;left:29%;top:12.5%;width:65%;font-size:40px;z-index:10}
+.venue{position:absolute;left:14%;top:27.5%;width:75%;font-size:18px;font-weight:700;line-height:1.3;text-align:right;white-space:pre-line;z-index:10}
+.rsvp-title{position:absolute;left:13%;top:53%;width:65%;font-size:40px;z-index:10}
+.rsvp-deadline{position:absolute;left:14%;top:64.5%;width:70%;font-size:20px;font-weight:700;z-index:10}
+.valid{position:absolute;left:6%;top:81%;width:71%;font-size:16px;font-weight:700;text-align:center;z-index:10}
+
+.btn{position:absolute;border:2px solid var(--lavender);background:rgba(255,255,255,.08);color:var(--text);height:46px;border-radius:8px;font-family:'Inter',sans-serif;font-weight:600;display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;z-index:20;transition:.22s ease;box-shadow:0 6px 16px rgba(91,65,102,.08)}
+.btn:hover,.btn:focus{background:var(--lavender);color:white;transform:translateY(-2px)}
+.location-btn{left:16.3%;top:43.9%;width:45%}
+.rsvp-btn{left:32.2%;top:72.9%;width:50%}
+.waze-icon{position:absolute;left:62.5%;top:44.3%;width:40px;height:40px;z-index:12;object-fit:cover}
+
+/* apertura */
+.intro{position:fixed;inset:0;background:#fff;z-index:9999;display:grid;place-items:center;padding:24px;transition:opacity .8s ease,visibility .8s ease}
+.intro.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.intro-card{width:min(92vw,390px);min-height:560px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:linear-gradient(180deg,#fff 0%,#f8f1f9 100%)}
+.intro-flower{position:absolute;font-size:44px;animation:float 4s ease-in-out infinite;opacity:.55}
+.intro-flower:nth-child(1){left:8%;top:13%}.intro-flower:nth-child(2){right:7%;top:24%;animation-delay:.7s}.intro-flower:nth-child(3){left:14%;bottom:18%;animation-delay:1.2s}.intro-flower:nth-child(4){right:14%;bottom:10%;animation-delay:1.9s}
+.intro h1{font-family:'Euphoria Script',cursive;font-size:58px;color:var(--lavender);margin:0 0 4px;-webkit-text-stroke:1px #fff}
+.intro p{margin:0 0 28px;font-weight:600}
+.open-btn{border:0;border-radius:999px;background:var(--lavender);color:white;padding:14px 30px;font-weight:700;cursor:pointer;box-shadow:0 10px 25px rgba(105,78,116,.22)}
+
+/* animaciones al hacer scroll */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .75s ease,transform .75s ease}
+.reveal.show{opacity:1;transform:none}
+.bounce-in.show{animation:bounceIn .9s both}
+.diagonal-in.show{animation:diag .9s both}
+
+/* modal RSVP */
+.modal{position:fixed;inset:0;background:rgba(39,27,43,.5);display:none;align-items:center;justify-content:center;padding:20px;z-index:10000}
+.modal.open{display:flex}
+.modal-card{width:min(100%,390px);background:white;border-radius:20px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.modal-card h2{font-family:'Euphoria Script',cursive;color:var(--lavender);font-size:42px;margin:0 0 8px;text-align:center}
+.field{display:grid;gap:6px;margin:14px 0}.field label{font-weight:700}.field input,.field select{width:100%;padding:12px;border:1px solid #d8cadd;border-radius:10px;font:inherit}
+.actions{display:flex;gap:10px;margin-top:18px}.actions button{flex:1;padding:12px;border-radius:10px;border:0;cursor:pointer;font-weight:700}.primary{background:var(--lavender);color:white}.secondary{background:#eee6f0;color:var(--text)}
+.note{font-size:12px;line-height:1.4;color:#756b79;margin-top:10px}
+.success{display:none;text-align:center;font-weight:700;padding:12px 0}
+
+@keyframes bounceIn{0%{opacity:0;transform:scale(.85)}55%{opacity:1;transform:scale(1.05)}75%{transform:scale(.97)}100%{opacity:1;transform:scale(1)}}
+@keyframes diag{0%{opacity:0;transform:translate(-38px,38px) rotate(-13deg)}100%{opacity:1;transform:translate(0,0) rotate(-13deg)}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-12px) rotate(5deg)}}
+
+@media(max-width:399px){
+  .shell{transform-origin:top center}
+  .hero-name,.hero-bday{font-size:15vw}
+  .s2-goodbye,.s3-title,.rsvp-title{font-size:10vw}
+  .s2-welcome{font-size:11vw}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="intro" id="intro" aria-label="Abrir invitación">
+  <div class="intro-card">
+    <span class="intro-flower">🌸</span><span class="intro-flower">🌷</span><span class="intro-flower">🌺</span><span class="intro-flower">🌼</span>
+    <h1>Yess Birthday</h1>
+    <p>Una invitación especial para ti</p>
+    <button class="open-btn" id="openInvitation">Abrir invitación</button>
+  </div>
+</div>
+
+<main class="shell" id="invitation">
+  <section class="section one">
+    <img class="figure f-main" src="https://ovjstvkjedyscwyfnoma.supabase.co/storage/v1/object/public/figures/cce3feff-60a0-41bf-a16c-da5720191b4f.webp" alt="" />
+    <img class="figure f-top-right reveal bounce-in" src="https://ovjstvkjedyscwyfnoma.supabase.co/storage/v1/object/public/figures/2ec32d6c-13da-48ad-acf5-373b83ab99c1.webp" alt="" />
+    <img class="figure f-leaf-left reveal bounce-in" src="https://ovjstvkjedyscwyfnoma.supabase.co/storage/v1/object/public/figures/e1f18ca3-ca78-4c6b-99f7-6f4a57fb60e1.webp" alt="" />
+    <h1 class="script-title hero-name reveal bounce-in">Yess</h1>
+    <div class="script-title hero-bday reveal bounce-in">Birthday</div>
+    <div class="hero-date reveal bounce-in">3 de octubre\n12:00 pm</div>
+    <img class="hero-photo reveal bounce-in" src="https://ovjstvkjedyscwyfnoma.supabase.co/storage/v1/object/public/invitaciones/99165abe-cb07-489e-a265-2ce4bf0f6eba/canvas-v4/file_688d072c-9365-4f22-90b2-4add5f751b81.jpg" alt="Foto de Yess" />
+    <img class="figure f-small-a reveal bounce-in" src="https://ovjstvkjedyscwyfnoma.supabase.co/storage/v1/object/public/figures/56259895-3edd-4d83-8c19-dbd8f4f2ec1e.webp" alt="" />
+    <img class="figure f-small-b reveal bounce-in" src="https://ovjstvkjedyscwyfnoma.supabase.co/storage/v1/object/public/figures/2328294c-0448-4e9c-8cd3-6ab90d1e420f.webp" alt="" />
+    <img class="figure f-small-c reveal bounce-in" src="https://ovjstvkjedyscwyfnoma.supabase.co/storage/v1/object/public/figures/7c2ff3b7-938e-44c5-9b03-64f5c8644498.webp" alt="" />
+    <img class="figure f-small-d reveal bounce-in" src="https://ovjstvkjedyscwyfnoma.supabase.co/storage/v1/object/public/figures/5b0cd397-8f56-48d0-a02b-d2cd5903e8b9.webp" alt="" />
+  </section>
+
+  <section class="section two">
+    <div class="script-title s2-goodbye reveal bounce-in">Adiós 22's ...</div>
+    <div class="script-title s2-welcome reveal bounce-in">Bienvenidos 23's</div>
+    <div class="polaroid p1 reveal diagonal-in"><img src="https://ovjstvkjedyscwyfnoma.supabase.co/storage/v1/object/public/invitaciones/99165abe-cb07-489e-a265-2ce4bf0f6eba/canvas-v4/file_7b916771-ea3a-49e3-b9dc-b1e8919d5e4a.jpg" alt="Recuerdo 1"></div>
+    <div class="polaroid p2 reveal bounce-in"><img src="https://ovjstvkjedyscwyfnoma.supabase.co/storage/v1/object/public/invitaciones/99165abe-cb07-489e-a265-2ce4bf0f6eba/canvas-v4/file_8d127ba5-639a-426f-adac-ed0e915e47ca.jpg" alt="Recuerdo 2"></div>
+    <div class="polaroid p3 reveal bounce-in"><img src="https://ovjstvkjedyscwyfnoma.supabase.co/storage/v1/object/public/invitaciones/99165abe-cb07-489e-a265-2ce4bf0f6eba/canvas-v4/file_7674f0c5-0406-4c88-a609-144a2fb933eb.jpg" alt="Recuerdo 3"></div>
+    <img class="figure" style="left:-18%;top:-5%;width:74%;transform:rotate(-21deg)" src="https://ovjstvkjedyscwyfnoma.supabase.co/storage/v1/object/public/figures/2ec32d6c-13da-48ad-acf5-373b83ab99c1.webp" alt="">
+    <img class="figure" style="right:-6%;bottom:2%;width:38%;transform:rotate(-18deg)" src="https://ovjstvkjedyscwyfnoma.supabase.co/storage/v1/object/public/figures/2328294c-0448-4e9c-8cd3-6ab90d1e420f.webp" alt="">
+  </section>
+
+  <section class="section three">
+    <img class="figure f-main reveal" src="https://ovjstvkjedyscwyfnoma.supabase.co/storage/v1/object/public/figures/cce3feff-60a0-41bf-a16c-da5720191b4f.webp" alt="">
+    <img class="figure" style="left:-21%;top:-8%;width:75%;transform:rotate(-21deg)" src="https://ovjstvkjedyscwyfnoma.supabase.co/storage/v1/object/public/figures/2ec32d6c-13da-48ad-acf5-373b83ab99c1.webp" alt="">
+    <div class="script-title s3-title reveal bounce-in">Ubicación</div>
+    <div class="venue reveal bounce-in">Club Campestre "La Montaña"\nIndicar acción (1407)\nCosto de parqueo: Carros Q25.00 Motos Q25.00</div>
+    <a class="btn location-btn reveal bounce-in" target="_blank" rel="noopener" href="https://ul.waze.com/ul?ll=14.67040073%2C-90.59860468&navigate=yes&zoom=17&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location">Ver ubicación</a>
+    <img class="waze-icon reveal bounce-in" src="https://ovjstvkjedyscwyfnoma.supabase.co/storage/v1/object/public/invitaciones/99165abe-cb07-489e-a265-2ce4bf0f6eba/canvas-v4/file_80193d95-4294-438f-bbae-34ed2fc568c2.png" alt="Waze" />
+    <div class="script-title rsvp-title reveal bounce-in">Confirmar asistencia</div>
+    <div class="rsvp-deadline reveal bounce-in">Antes del 10 de septiembre</div>
+    <button class="btn rsvp-btn reveal bounce-in" id="rsvpOpen">Confirmar asistencia</button>
+    <div class="valid reveal bounce-in">Invitación válida para 1 persona.</div>
+    <img class="figure" style="right:-2%;bottom:-2%;width:37%;transform:rotate(28deg)" src="https://ovjstvkjedyscwyfnoma.supabase.co/storage/v1/object/public/figures/e1f18ca3-ca78-4c6b-99f7-6f4a57fb60e1.webp" alt="">
+  </section>
+</main>
+
+<div class="modal" id="rsvpModal" role="dialog" aria-modal="true" aria-labelledby="rsvpTitle">
+  <div class="modal-card">
+    <div id="rsvpFormWrap">
+      <h2 id="rsvpTitle">Confirmar asistencia</h2>
+      <form id="rsvpForm">
+        <div class="field"><label for="guestName">Nombre</label><input id="guestName" name="nombre" required autocomplete="name"></div>
+        <div class="field"><label for="attendance">¿Asistirás?</label><select id="attendance" name="asistencia" required><option value="">Selecciona</option><option value="Si">Sí, asistiré</option><option value="No">No podré asistir</option></select></div>
+        <div class="actions"><button type="button" class="secondary" id="rsvpClose">Cancelar</button><button type="submit" class="primary">Enviar</button></div>
+        <p class="note">Este formulario puede conectarse a Google Sheets mediante Google Apps Script. Mientras no configures la URL del Script, la respuesta se guarda solo en el navegador de prueba.</p>
+      </form>
+    </div>
+    <div class="success" id="rsvpSuccess">¡Gracias! Tu respuesta fue registrada.</div>
+  </div>
+</div>
+
+<script>
+/* ========= CONFIGURACIÓN =========
+  Cuando tengas un Web App de Google Apps Script, pega su URL aquí.
+  Ejemplo: https://script.google.com/macros/s/AKfy.../exec
+*/
+const GOOGLE_APPS_SCRIPT_URL = '';
+
+const intro = document.getElementById('intro');
+document.getElementById('openInvitation').addEventListener('click',()=>{
+  intro.classList.add('hidden');
+  sessionStorage.setItem('invitationOpened','1');
+});
+if(sessionStorage.getItem('invitationOpened')==='1') intro.classList.add('hidden');
+
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('show'); });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+const modal = document.getElementById('rsvpModal');
+document.getElementById('rsvpOpen').addEventListener('click',()=>modal.classList.add('open'));
+document.getElementById('rsvpClose').addEventListener('click',()=>modal.classList.remove('open'));
+modal.addEventListener('click',(e)=>{if(e.target===modal)modal.classList.remove('open')});
+
+document.getElementById('rsvpForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.target).entries());
+  data.fechaRegistro = new Date().toISOString();
+  try{
+    if(GOOGLE_APPS_SCRIPT_URL){
+      await fetch(GOOGLE_APPS_SCRIPT_URL,{
+        method:'POST',
+        mode:'no-cors',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(data)
+      });
+    }else{
+      const saved = JSON.parse(localStorage.getItem('yess_rsvp')||'[]');
+      saved.push(data);
+      localStorage.setItem('yess_rsvp',JSON.stringify(saved));
+    }
+    document.getElementById('rsvpFormWrap').style.display='none';
+    document.getElementById('rsvpSuccess').style.display='block';
+    setTimeout(()=>modal.classList.remove('open'),2200);
+  }catch(err){
+    alert('No se pudo registrar la respuesta. Intenta nuevamente.');
+  }
+});
+</script>
+</body>
+</html>
